@@ -1,0 +1,21 @@
+services:
+  app-ui:
+    container_name: app-ui
+    build: app-ui
+    image: app-ui
+    restart: no
+    volumes:
+      - ./app-ui/:/app-ui
+      - /app-ui/node_modules 
+    ports:
+      - "3000:3000"
+    depends_on:
+      - ai-api
+  ai-api:
+    build: ai-api
+    image: ai-api
+    restart: no
+    volumes:
+      - ./ai-api/:/ai-api
+    ports:
+      - "5000:5000"
